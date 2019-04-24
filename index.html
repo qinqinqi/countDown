@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>纯前端实现的倒计时功能</title>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
     <style>
         *{margin:0;padding:0;list-style: none;}
         .item{width: 100%;box-shadow: 0 4px 40px #fadcdd;}
@@ -62,8 +63,77 @@
             var	minutes = document.getElementById('minutes');
             var seconds = document.getElementById('seconds');
             // 声明结束时间
-            countDownTime.init('2019/4/10 00:00:00', day, hours, minutes, seconds);
+            countDownTime.init('2019/7/10 00:00:00', day, hours, minutes, seconds);
             countDownTime.start();
+        }
+    </script>
+
+
+    <style>
+        .jiaonang{width: 100%;height: 160px;background: url(http://sh.jingrui.cn/newpc/res/images/jn.png) no-repeat center;background-size: cover;position: relative;}
+        .jiaonang .inner{position: relative;width: 1200px;margin: 0 auto;height: 100%;}
+        .jiaonang .inner .timeTips{font-size: 16px;color:#fff;position: absolute;left: 325px;top: 22px;}
+        .jiaonang #time2{font-size: 18px;color:#333333;position: absolute;top:64px;right:100px;}
+        .jiaonang em{font-style: normal;display: inline-block;width: 35px;height: 42px;background: #444444;color: #fff;font-size: 22px;text-align: center;line-height: 42px;border-radius: 10px;margin: 0 12px;}
+        .jiaonang .closeBtn{position: absolute;top: 10px;right: 10px;z-index:33;}
+    </style>
+    <div class="jiaonang">
+        <div class="inner">
+            <div class="timeTips">活动时间：4月20日-7月28日</div>
+            <p id="time2">距离活动结束仅剩<em id="day2" style="margin-left:23px;"></em>天<em id="hours2"></em>时<em id="minutes2"></em>分<em id="seconds2"></em>秒</p>
+        </div>
+        <div class="closeBtn"><img src="http://sh.jingrui.cn/newpc/res/images/close.png" alt=""></div>
+    </div>
+    <script>
+        // 4.20上线
+        {
+            var mydate = new Date();
+            var t=mydate.toLocaleDateString();
+            if(t=='2019/4/19'){
+                $(".jiaonang").hide();
+            }else{
+                $(".jiaonang").show();
+            }
+        }
+        // 倒计时
+        {
+            show_time();
+            function show_time(){ 
+                var time_start = new Date().getTime(); //获取当前时间
+                var time_end =  new Date("2019/7/28 00:00:00").getTime(); //设定目标时间
+                var time_distance = time_end - time_start; // 计算时间差 
+
+                var int_day = Math.floor(time_distance/86400000); // 天
+                time_distance -= int_day * 86400000; 
+
+                var int_hour = Math.floor(time_distance/3600000); // 时
+                time_distance -= int_hour * 3600000; 
+                
+                var int_minute = Math.floor(time_distance/60000); // 分
+                time_distance -= int_minute * 60000; 
+                 
+                var int_second = Math.floor(time_distance/1000); // 秒
+                // 时分秒为单数时、前面加零 
+                int_day < 10 ? int_day = "0" + int_day : '' ;
+                int_hour < 10 ? int_hour = "0" + int_hour : '' ;
+                int_minute < 10 ? int_minute = "0" + int_minute : '' ;
+                int_minute < 10 ? int_minute = "0" + int_minute : '' ;
+                // 显示时间 
+                $("#day2").text(int_day); 
+                $("#hours2").text(int_hour); 
+                $("#minutes2").text(int_minute); 
+                $("#seconds2").text(int_second); 
+                // 设置定时器
+                setTimeout("show_time()",1000);
+            }
+        }
+
+        // 关闭活动
+        {
+            $(".jiaonang .closeBtn").click(function(){
+                $(".jiaonang").hide();
+                return false;
+            })
         }
     </script>
 </body>
