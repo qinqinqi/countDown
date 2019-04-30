@@ -100,7 +100,7 @@
             show_time();
             function show_time(){ 
                 var time_start = new Date().getTime(); //获取当前时间
-                var time_end =  new Date("2019/7/28 00:00:00").getTime(); //设定目标时间
+                var time_end =  new Date("2019/2/28 00:00:00").getTime(); //设定目标时间
                 var time_distance = time_end - time_start; // 计算时间差 
 
                 var int_day = Math.floor(time_distance/86400000); // 天
@@ -113,11 +113,16 @@
                 time_distance -= int_minute * 60000; 
                  
                 var int_second = Math.floor(time_distance/1000); // 秒
-                // 时分秒为单数时、前面加零 
-                int_day < 10 ? int_day = "0" + int_day : '' ;
-                int_hour < 10 ? int_hour = "0" + int_hour : '' ;
-                int_minute < 10 ? int_minute = "0" + int_minute : '' ;
-                int_minute < 10 ? int_minute = "0" + int_minute : '' ;
+                // 为负数时归零
+                if(int_day<0){
+                    int_day=0,int_hour=0,int_minute=0,int_second=0;
+                }else{
+                    // 时分秒为单数时、前面加零 
+                    int_day < 10 ? int_day = "0" + int_day : '' ;
+                    int_hour < 10 ? int_hour = "0" + int_hour : '' ;
+                    int_minute < 10 ? int_minute = "0" + int_minute : '' ;
+                    int_minute < 10 ? int_minute = "0" + int_minute : '' ;
+                }
                 // 显示时间 
                 $("#day2").text(int_day); 
                 $("#hours2").text(int_hour); 
