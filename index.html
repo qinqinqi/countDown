@@ -85,22 +85,12 @@
         <div class="closeBtn"><img src="http://sh.jingrui.cn/newpc/res/images/close.png" alt=""></div>
     </div>
     <script>
-        // 4.20上线
-        {
-            var mydate = new Date();
-            var t=mydate.toLocaleDateString();
-            if(t=='2019/4/19'){
-                $(".jiaonang").hide();
-            }else{
-                $(".jiaonang").show();
-            }
-        }
         // 倒计时
         {
             show_time();
             function show_time(){ 
                 var time_start = new Date().getTime(); //获取当前时间
-                var time_end =  new Date("2019/2/28 00:00:00").getTime(); //设定目标时间
+                var time_end =  new Date("2019/7/28 00:00:00").getTime(); //设定目标时间
                 var time_distance = time_end - time_start; // 计算时间差 
 
                 var int_day = Math.floor(time_distance/86400000); // 天
