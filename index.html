@@ -63,7 +63,7 @@
             var	minutes = document.getElementById('minutes');
             var seconds = document.getElementById('seconds');
             // 声明结束时间
-            countDownTime.init('2019/7/10 00:00:00', day, hours, minutes, seconds);
+            countDownTime.init('2019/11/10 00:00:00', day, hours, minutes, seconds);
             countDownTime.start();
         }
     </script>
@@ -90,7 +90,7 @@
             show_time();
             function show_time(){ 
                 var time_start = new Date().getTime(); //获取当前时间
-                var time_end =  new Date("2019/7/28 00:00:00").getTime(); //设定目标时间
+                var time_end =  new Date("2019/11/28 00:00:00").getTime(); //设定目标时间
                 var time_distance = time_end - time_start; // 计算时间差 
 
                 var int_day = Math.floor(time_distance/86400000); // 天
